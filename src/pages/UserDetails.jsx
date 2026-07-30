@@ -1,37 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
 import { UserContext } from "../context/UserContext";
 
 const UserDetails = () => {
   const { id } = useParams();
-  const { users } = useContext(UserContext);
+  const { users, loading, error } = useContext(UserContext);
 
-  const [user, setUser] = useState(
-    users.find((u) => u.id === Number(id))
-  );
-  const [loading, setLoading] = useState(!user);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          `https://jsonplaceholder.typicode.com/users/${id}`
-        );
-        setUser(response.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (!user) {
-      fetchUser();
-    } else {
-      setLoading(false);
-    }
-  }, [id, user]);
+  const user = users.find((u) => u.id === Number(id));
 
   if (loading) {
     return (
@@ -41,10 +16,22 @@ const UserDetails = () => {
     );
   }
 
+  if (error) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <h2 className="text-2xl font-semibold text-red-600">
+          {error}
+        </h2>
+      </div>
+    );
+  }
+
   if (!user) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <h2 className="text-2xl font-semibold">User Not Found</h2>
+        <h2 className="text-2xl font-semibold">
+          User Not Found
+        </h2>
       </div>
     );
   }
@@ -64,7 +51,10 @@ const UserDetails = () => {
           <h1 className="text-3xl font-bold text-gray-800">
             {user.name}
           </h1>
-          <p className="mt-1 text-gray-500">@{user.username}</p>
+
+          <p className="mt-1 text-gray-500">
+            @{user.username}
+          </p>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
@@ -74,9 +64,17 @@ const UserDetails = () => {
               Personal Details
             </h2>
 
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Phone:</strong> {user.phone}</p>
-            <p><strong>Website:</strong> {user.website}</p>
+            <p>
+              <strong>Email:</strong> {user.email}
+            </p>
+
+            <p>
+              <strong>Phone:</strong> {user.phone}
+            </p>
+
+            <p>
+              <strong>Website:</strong> {user.website}
+            </p>
           </div>
 
           <div className="rounded-lg bg-white p-5 shadow">
@@ -84,9 +82,18 @@ const UserDetails = () => {
               Company
             </h2>
 
-            <p><strong>Name:</strong> {user.company.name}</p>
-            <p><strong>Catch Phrase:</strong> {user.company.catchPhrase}</p>
-            <p><strong>Business:</strong> {user.company.bs}</p>
+            <p>
+              <strong>Name:</strong> {user.company.name}
+            </p>
+
+            <p>
+              <strong>Catch Phrase:</strong>{" "}
+              {user.company.catchPhrase}
+            </p>
+
+            <p>
+              <strong>Business:</strong> {user.company.bs}
+            </p>
           </div>
 
           <div className="rounded-lg bg-white p-5 shadow">
@@ -105,8 +112,15 @@ const UserDetails = () => {
               Geo Location
             </h2>
 
-            <p><strong>Latitude:</strong> {user.address.geo.lat}</p>
-            <p><strong>Longitude:</strong> {user.address.geo.lng}</p>
+            <p>
+              <strong>Latitude:</strong>{" "}
+              {user.address.geo.lat}
+            </p>
+
+            <p>
+              <strong>Longitude:</strong>{" "}
+              {user.address.geo.lng}
+            </p>
           </div>
 
         </div>
