@@ -101,89 +101,63 @@ const Dashboard = () => {
         />
       </div>
 
-      {/* Create User Form */}
-      <div className="mx-auto mb-10 max-w-4xl rounded-lg bg-white p-6 shadow-md">
-        <h2 className="mb-6 text-2xl font-bold text-gray-800">
-          Create New User
-        </h2>
+     {/* Create User Form */}
+<div className="mb-8 rounded-lg bg-white p-5 shadow">
+  <h2 className="mb-5 text-2xl font-bold text-gray-800">
+    Create New User
+  </h2>
 
-        <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Name
-              </label>
+  <form onSubmit={handleSubmit}>
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <input
+        type="text"
+        name="name"
+        placeholder="Enter name"
+        value={formData.name}
+        onChange={handleChange}
+        className="rounded-lg border border-gray-300 p-3 outline-none focus:border-gray-700"
+        required
+      />
 
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full rounded-lg border border-gray-300 p-3 outline-none focus:border-blue-500"
-                required
-              />
-            </div>
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter email"
+        value={formData.email}
+        onChange={handleChange}
+        className="rounded-lg border border-gray-300 p-3 outline-none focus:border-gray-700"
+        required
+      />
 
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Email
-              </label>
+      <input
+        type="text"
+        name="phone"
+        placeholder="Enter phone"
+        value={formData.phone}
+        onChange={handleChange}
+        className="rounded-lg border border-gray-300 p-3 outline-none focus:border-gray-700"
+        required
+      />
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full rounded-lg border border-gray-300 p-3 outline-none focus:border-blue-500"
-                required
-              />
-            </div>
+      <input
+        type="text"
+        name="company"
+        placeholder="Enter company"
+        value={formData.company}
+        onChange={handleChange}
+        className="rounded-lg border border-gray-300 p-3 outline-none focus:border-gray-700"
+        required
+      />
+    </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Phone
-              </label>
-
-              <input
-                type="text"
-                name="phone"
-                placeholder="Enter phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full rounded-lg border border-gray-300 p-3 outline-none focus:border-blue-500"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Company
-              </label>
-
-              <input
-                type="text"
-                name="company"
-                placeholder="Enter company"
-                value={formData.company}
-                onChange={handleChange}
-                className="w-full rounded-lg border border-gray-300 p-3 outline-none focus:border-blue-500"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="mt-6 flex justify-end">
-            <button
-              type="submit"
-              className="rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
-            >
-              Create User
-            </button>
-          </div>
-        </form>
-      </div>
+    <button
+      type="submit"
+      className="mt-5 rounded-lg bg-gray-800 px-5 py-3 text-white transition hover:bg-black"
+    >
+      Create User
+    </button>
+  </form>
+</div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {filteredUsers.map((user) => (

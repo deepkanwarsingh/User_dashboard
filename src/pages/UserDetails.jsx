@@ -18,7 +18,6 @@ const UserDetails = () => {
         const response = await axios.get(
           `https://jsonplaceholder.typicode.com/users/${id}`
         );
-
         setUser(response.data);
       } catch (error) {
         console.log(error);
@@ -51,34 +50,37 @@ const UserDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow">
+    <div className="min-h-screen bg-gray-100 p-5">
+      <div className="mx-auto max-w-5xl">
 
         <Link
           to="/"
-          className="mb-6 inline-block text-blue-600 hover:underline"
+          className="mb-6 inline-block rounded-lg bg-gray-800 px-4 py-2 text-white hover:bg-black"
         >
-          ← Back to Dashboard
+          ← Back
         </Link>
 
-        <h1 className="mb-6 text-3xl font-bold">
-          {user.name}
-        </h1>
+        <div className="mb-6 rounded-lg bg-white p-6 shadow">
+          <h1 className="text-3xl font-bold text-gray-800">
+            {user.name}
+          </h1>
+          <p className="mt-1 text-gray-500">@{user.username}</p>
+        </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded border p-4">
-            <h2 className="mb-3 text-xl font-semibold">
+        <div className="grid gap-5 md:grid-cols-2">
+
+          <div className="rounded-lg bg-white p-5 shadow">
+            <h2 className="mb-4 text-xl font-semibold">
               Personal Details
             </h2>
 
-            <p><strong>Username:</strong> {user.username}</p>
             <p><strong>Email:</strong> {user.email}</p>
             <p><strong>Phone:</strong> {user.phone}</p>
             <p><strong>Website:</strong> {user.website}</p>
           </div>
 
-          <div className="rounded border p-4">
-            <h2 className="mb-3 text-xl font-semibold">
+          <div className="rounded-lg bg-white p-5 shadow">
+            <h2 className="mb-4 text-xl font-semibold">
               Company
             </h2>
 
@@ -87,8 +89,8 @@ const UserDetails = () => {
             <p><strong>Business:</strong> {user.company.bs}</p>
           </div>
 
-          <div className="rounded border p-4">
-            <h2 className="mb-3 text-xl font-semibold">
+          <div className="rounded-lg bg-white p-5 shadow">
+            <h2 className="mb-4 text-xl font-semibold">
               Address
             </h2>
 
@@ -98,14 +100,15 @@ const UserDetails = () => {
             <p>{user.address.zipcode}</p>
           </div>
 
-          <div className="rounded border p-4">
-            <h2 className="mb-3 text-xl font-semibold">
+          <div className="rounded-lg bg-white p-5 shadow">
+            <h2 className="mb-4 text-xl font-semibold">
               Geo Location
             </h2>
 
             <p><strong>Latitude:</strong> {user.address.geo.lat}</p>
             <p><strong>Longitude:</strong> {user.address.geo.lng}</p>
           </div>
+
         </div>
       </div>
     </div>
